@@ -1,0 +1,58 @@
+import os
+import sys
+import argparse
+import cv2
+from easyocr import Reader
+def is_registered(plate_number, registered_plates):
+    return plate_number in registered_plates
+def main(args):
+    model_path = args.model
+    source = args.source
+    
+    # Load YOLO model and other necessary configurations
+    # (Assume this part is already implemented in the repository)
+
+    # Initialize EasyOCR reader
+    reader = Reader(['en'])
+
+    # List of registered license plates (you can load this from a file or define it here)
+    registered_plates = ['ABC123', 'XYZ789', 'PQR456']  # Example list of registered plates
+
+    # Process video or image frames
+    cap = cv2.VideoCapture(source)
+    while cap.isOpened():
+        ret, frame = cap.read()
+        if not ret:
+            break
+
+        # Perform license plate detection and recognition
+        # (Assume this part is already implemented in the repository)
+
+        # Extract detected plate numbers
+        detected_plates = ['ABC123', 'XYZ789', 'DEF456']  # Example detected plates (replace with actual implementation)
+
+        # Check each detected plate against registered plates
+        for plate in detected_plates:
+            if is_registered(plate, registered_plates):
+                print(f"Plate {plate} is registered.")
+                # Modify the frame to indicate registered status (e.g., draw a green box around the plate)
+                # (Assume this part is already implemented in the repository)
+            else:
+                print(f"Plate {plate} is unregistered.")
+                # Modify the frame to indicate unregistered status (e.g., draw a red box around the plate)
+                # (Assume this part is already implemented in the repository)
+
+        # Display processed frame or save it to an output video
+        # (Assume this part is already implemented in the repository)
+
+    cap.release()
+    cv2.destroyAllWindows()
+
+if _name_ == "_main_":
+    parser = argparse.ArgumentParser(description='License Plate Detection and Recognition')
+    parser.add_argument('--model', required=True, type=str, help='Path to YOLO model')
+    parser.add_argument('--source', required=True, type=str, help='Path to video file or 0 for webcam')
+    args = parser.parse_args()
+
+    main(args)
+python predictWithOCR.py --model /path/to/best.pt --source /path/to/demo.mp4
