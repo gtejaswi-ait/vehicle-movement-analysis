@@ -1,0 +1,7 @@
+YOLO Model: best.pt
+Source Video: demo.mp4
+Registered Plates: ['ABC123', 'XYZ789', 'PQR456']
+
+Plate ABC123 is registered.
+Plate XYZ789 is registered.
+Plate DEF456 is unregistered.
